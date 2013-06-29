@@ -1,4 +1,5 @@
 ﻿using Code.Domain.SearchPlayers.Boundaries;
+using Code.Domain.SearchPlayers.Models;
 
 namespace Code.Domain.Features.SearchPlayers.Fakes
 {

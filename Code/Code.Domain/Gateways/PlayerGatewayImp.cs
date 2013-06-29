@@ -18,6 +18,7 @@ namespace Code.Domain.Gateways
 
         public IEnumerable<Player> GetPlayers(SearchPlayersRequest request)
         {
+
             var players = _context.Players;
             players = FilterOnAge(request, players);
             players = FilterOnCurrentAbility(request, players);
