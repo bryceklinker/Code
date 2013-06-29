@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Code.Services
+namespace Code.Services.App_Start
 {
     public class BundleConfig
     {

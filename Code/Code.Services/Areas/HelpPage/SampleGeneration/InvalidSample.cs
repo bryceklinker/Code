@@ -1,6 +1,6 @@
 using System;
 
-namespace Code.Services.Areas.HelpPage
+namespace Code.Services.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.

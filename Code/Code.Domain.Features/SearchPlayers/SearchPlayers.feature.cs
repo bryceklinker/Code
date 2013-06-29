@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Code.Domain.Features
+namespace Code.Domain.Features.SearchPlayers
 {
     using TechTalk.SpecFlow;
     
@@ -105,10 +105,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 14
- testRunner.When("I enter potential 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("a player with potential abliity 150", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I enter potential 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
+ testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
  testRunner.Then("I get every player with potential greater than or equal to 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -119,15 +121,17 @@ this.FeatureBackground();
         public virtual void SearchForPlayersByCurrentAbility()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search for players by current ability", ((string[])(null)));
-#line 18
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 19
- testRunner.When("I enter current ability 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
- testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("a player with current ability 150", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
+ testRunner.When("I enter current ability 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
  testRunner.Then("I get every player with current ability greater than or equal to 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -138,16 +142,20 @@ this.FeatureBackground();
         public virtual void SearchForPlayersByPosition()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search for players by position", ((string[])(null)));
-#line 23
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 24
- testRunner.When("I enter position central midfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
- testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
- testRunner.Then("I get every player with position central midfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("a player with ability 15 in central midfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 27
+ testRunner.When("I enter position central midfield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 28
+ testRunner.And("I enter ability in position 15", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.Then("I get every player with ability in central midfield greater than or equal to 15", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -157,15 +165,17 @@ this.FeatureBackground();
         public virtual void SearchForPlayersByAge()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search for players by age", ((string[])(null)));
-#line 28
+#line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 29
+#line 33
+ testRunner.Given("a player with age 19", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 34
  testRunner.When("I enter age 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 35
  testRunner.And("I search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 36
  testRunner.Then("I get every player with age less than or equal to 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

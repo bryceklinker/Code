@@ -39,8 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Models\PlayerModel.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Position.cs" />
+    <Compile Include="Gateways\Contexts\Context.cs" />
+    <Compile Include="Gateways\PlayerGateway.cs" />
+    <Compile Include="Gateways\PlayerGatewayImp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchPlayers\Boundaries\SearchPlayersConsumerBoundary.cs" />
+    <Compile Include="SearchPlayers\Boundaries\SearchPlayersProducerBoundary.cs" />
+    <Compile Include="SearchPlayers\Models\SearchPlayerModel.cs" />
+    <Compile Include="SearchPlayers\Models\SearchPlayersRequest.cs" />
+    <Compile Include="SearchPlayers\Models\SearchPlayersResponse.cs" />
+    <Compile Include="SearchPlayers\SearchPlayersInteractor.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

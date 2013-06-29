@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Code.Services.Areas.HelpPage.Models;
+using Code.Services.Areas.HelpPage.SampleGeneration;
 
 namespace Code.Services.Areas.HelpPage
 {
