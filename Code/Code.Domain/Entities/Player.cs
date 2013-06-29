@@ -30,11 +30,12 @@ namespace Code.Domain.Entities
         {
             return model.Positions == null
                 ? null
-                : Enumerable.Select<Position, Position>(model.Positions, p => new Position
-                {
-                    Ability = p.Ability,
-                    Name = p.Name
-                }).ToList();
+                : model.Positions.Select(
+                    p => new Position
+                    {
+                        Ability = p.Ability,
+                        Name = p.Name
+                    }).ToList();
         }
 
         public string GetName()

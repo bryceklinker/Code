@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Code.Domain.Entities;
 using FMEditorLive.FMObjects;
 using Player = FMEditorLive.FMObjects.Player;
@@ -12,7 +8,7 @@ namespace Code.Data.Entities
     public class FootballManagerPlayerProxy : FootballManagerPlayer
     {
         private readonly Player _player;
-        private readonly List<Position> _positions; 
+        private readonly List<Position> _positions;
 
         public FootballManagerPlayerProxy(Player player)
         {

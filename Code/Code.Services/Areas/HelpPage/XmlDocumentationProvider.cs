@@ -13,7 +13,7 @@ namespace Code.Services.Areas.HelpPage
     /// </summary>
     public class XmlDocumentationProvider : IDocumentationProvider
     {
-        private XPathNavigator _documentNavigator;
+        private readonly XPathNavigator _documentNavigator;
         private const string MethodExpression = "/doc/members/member[@name='M:{0}']";
         private const string ParameterExpression = "param[@name='{0}']";
 
@@ -24,23 +24,19 @@ namespace Code.Services.Areas.HelpPage
         public XmlDocumentationProvider(string documentPath)
         {
             if (documentPath == null)
-            {
                 throw new ArgumentNullException("documentPath");
-            }
-            XPathDocument xpath = new XPathDocument(documentPath);
+            var xpath = new XPathDocument(documentPath);
             _documentNavigator = xpath.CreateNavigator();
         }
 
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            var methodNode = GetMethodNode(actionDescriptor);
             if (methodNode != null)
             {
-                XPathNavigator summaryNode = methodNode.SelectSingleNode("summary");
+                var summaryNode = methodNode.SelectSingleNode("summary");
                 if (summaryNode != null)
-                {
                     return summaryNode.Value.Trim();
-                }
             }
 
             return null;
@@ -48,18 +44,18 @@ namespace Code.Services.Areas.HelpPage
 
         public virtual string GetDocumentation(HttpParameterDescriptor parameterDescriptor)
         {
-            ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
+            var reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
             if (reflectedParameterDescriptor != null)
             {
-                XPathNavigator methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
+                var methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
                 {
-                    string parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
-                    XPathNavigator parameterNode = methodNode.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
+                    var parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
+                    var parameterNode =
+                        methodNode.SelectSingleNode(
+                            String.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
                     if (parameterNode != null)
-                    {
                         return parameterNode.Value.Trim();
-                    }
                 }
             }
 
@@ -68,10 +64,11 @@ namespace Code.Services.Areas.HelpPage
 
         private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
         {
-            ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
+            var reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
             if (reflectedActionDescriptor != null)
             {
-                string selectExpression = String.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
+                var selectExpression = String.Format(
+                    CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
                 return _documentNavigator.SelectSingleNode(selectExpression);
             }
 
@@ -80,11 +77,12 @@ namespace Code.Services.Areas.HelpPage
 
         private static string GetMemberName(MethodInfo method)
         {
-            string name = String.Format(CultureInfo.InvariantCulture, "{0}.{1}", method.DeclaringType.FullName, method.Name);
-            ParameterInfo[] parameters = method.GetParameters();
+            var name = String.Format(
+                CultureInfo.InvariantCulture, "{0}.{1}", method.DeclaringType.FullName, method.Name);
+            var parameters = method.GetParameters();
             if (parameters.Length != 0)
             {
-                string[] parameterTypeNames = parameters.Select(param => GetTypeName(param.ParameterType)).ToArray();
+                var parameterTypeNames = parameters.Select(param => GetTypeName(param.ParameterType)).ToArray();
                 name += String.Format(CultureInfo.InvariantCulture, "({0})", String.Join(",", parameterTypeNames));
             }
 
@@ -96,14 +94,15 @@ namespace Code.Services.Areas.HelpPage
             if (type.IsGenericType)
             {
                 // Format the generic type name to something like: Generic{System.Int32,System.String}
-                Type genericType = type.GetGenericTypeDefinition();
-                Type[] genericArguments = type.GetGenericArguments();
-                string typeName = genericType.FullName;
+                var genericType = type.GetGenericTypeDefinition();
+                var genericArguments = type.GetGenericArguments();
+                var typeName = genericType.FullName;
 
                 // Trim the generic parameter counts from the name
                 typeName = typeName.Substring(0, typeName.IndexOf('`'));
-                string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
-                return String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", typeName, String.Join(",", argumentTypeNames));
+                var argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
+                return String.Format(
+                    CultureInfo.InvariantCulture, "{0}{{{1}}}", typeName, String.Join(",", argumentTypeNames));
             }
 
             return type.FullName;

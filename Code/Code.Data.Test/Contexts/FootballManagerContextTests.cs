@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Code.Data.Contexts;
 using Code.Data.Entities;
 using Code.Data.Games;
-using FMEditorLive.FMObjects;
 using Moq;
 using NUnit.Framework;
 
@@ -27,7 +22,7 @@ namespace Code.Data.Test.Contexts
 
         private void AddPlayers(int playerCount)
         {
-            for (int i = 0; i < playerCount; i++)
+            for (var i = 0; i < playerCount; i++)
                 AddPlayer();
         }
 

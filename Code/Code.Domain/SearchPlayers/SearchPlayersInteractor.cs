@@ -30,14 +30,15 @@ namespace Code.Domain.SearchPlayers
 
         private IEnumerable<SearchPlayerModel> ConvertPlayers(IEnumerable<Player> players)
         {
-            return players.Select(p => new SearchPlayerModel
-            {
-                Age = p.GetAge(),
-                CurrentAbility = p.GetAbility(),
-                Name = p.GetName(),
-                Positions = p.GetPositions(),
-                PotentialAbility = p.GetPotential()
-            })
+            return players.Select(
+                p => new SearchPlayerModel
+                {
+                    Age = p.GetAge(),
+                    CurrentAbility = p.GetAbility(),
+                    Name = p.GetName(),
+                    Positions = p.GetPositions(),
+                    PotentialAbility = p.GetPotential()
+                })
                 .ToList();
         }
     }

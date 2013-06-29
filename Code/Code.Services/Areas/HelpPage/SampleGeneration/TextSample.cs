@@ -10,9 +10,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         public TextSample(string text)
         {
             if (text == null)
-            {
                 throw new ArgumentNullException("text");
-            }
             Text = text;
         }
 
@@ -20,7 +18,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
 
         public override bool Equals(object obj)
         {
-            TextSample other = obj as TextSample;
+            var other = obj as TextSample;
             return other != null && Text == other.Text;
         }
 

@@ -14,9 +14,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         public ImageSample(string src)
         {
             if (src == null)
-            {
                 throw new ArgumentNullException("src");
-            }
             Src = src;
         }
 
@@ -24,7 +22,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
 
         public override bool Equals(object obj)
         {
-            ImageSample other = obj as ImageSample;
+            var other = obj as ImageSample;
             return other != null && Src == other.Src;
         }
 

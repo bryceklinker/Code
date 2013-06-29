@@ -11,7 +11,7 @@ namespace Code.Domain.Features.Fakes
         public void InitializePlayers(int playerCount)
         {
             _players = new List<PlayerModel>();
-            for (int i = 0; i < playerCount; i++)
+            for (var i = 0; i < playerCount; i++)
                 AddPlayer(i);
         }
 

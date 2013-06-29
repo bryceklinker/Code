@@ -10,9 +10,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         public InvalidSample(string errorMessage)
         {
             if (errorMessage == null)
-            {
                 throw new ArgumentNullException("errorMessage");
-            }
             ErrorMessage = errorMessage;
         }
 
@@ -20,7 +18,7 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
 
         public override bool Equals(object obj)
         {
-            InvalidSample other = obj as InvalidSample;
+            var other = obj as InvalidSample;
             return other != null && ErrorMessage == other.ErrorMessage;
         }
 

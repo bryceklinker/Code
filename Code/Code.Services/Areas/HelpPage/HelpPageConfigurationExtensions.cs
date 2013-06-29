@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -21,7 +20,8 @@ namespace Code.Services.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="documentationProvider">The documentation provider.</param>
-        public static void SetDocumentationProvider(this HttpConfiguration config, IDocumentationProvider documentationProvider)
+        public static void SetDocumentationProvider(
+            this HttpConfiguration config, IDocumentationProvider documentationProvider)
         {
             config.Services.Replace(typeof(IDocumentationProvider), documentationProvider);
         }
@@ -44,9 +44,25 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
+        public static void SetSampleRequest(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, new[] { "*" }), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(
+                    new HelpPageSampleKey(
+                        mediaType,
+                        SampleDirection.Request,
+                        controllerName,
+                        actionName,
+                        new[]
+                        {
+                            "*"
+                        }),
+                    sample);
         }
 
         /// <summary>
@@ -58,9 +74,19 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetSampleRequest(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, parameterNames), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(
+                    new HelpPageSampleKey(
+                        mediaType, SampleDirection.Request, controllerName, actionName, parameterNames),
+                    sample);
         }
 
         /// <summary>
@@ -71,9 +97,25 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
+        public static void SetSampleResponse(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, new[] { "*" }), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(
+                    new HelpPageSampleKey(
+                        mediaType,
+                        SampleDirection.Response,
+                        controllerName,
+                        actionName,
+                        new[]
+                        {
+                            "*"
+                        }),
+                    sample);
         }
 
         /// <summary>
@@ -85,9 +127,19 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetSampleResponse(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, parameterNames), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(
+                    new HelpPageSampleKey(
+                        mediaType, SampleDirection.Response, controllerName, actionName, parameterNames),
+                    sample);
         }
 
         /// <summary>
@@ -97,7 +149,8 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="sample">The sample.</param>
         /// <param name="mediaType">The media type.</param>
         /// <param name="type">The parameter type or return type of an action.</param>
-        public static void SetSampleForType(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, Type type)
+        public static void SetSampleForType(
+            this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, Type type)
         {
             config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, type), sample);
         }
@@ -110,9 +163,20 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="type">The type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName)
+        public static void SetActualRequestType(
+            this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, new[] { "*" }), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(
+                    new HelpPageSampleKey(
+                        SampleDirection.Request,
+                        controllerName,
+                        actionName,
+                        new[]
+                        {
+                            "*"
+                        }),
+                    type);
         }
 
         /// <summary>
@@ -124,9 +188,16 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetActualRequestType(
+            this HttpConfiguration config,
+            Type type,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(
+                    new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -137,9 +208,20 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="type">The type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName)
+        public static void SetActualResponseType(
+            this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, new[] { "*" }), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(
+                    new HelpPageSampleKey(
+                        SampleDirection.Response,
+                        controllerName,
+                        actionName,
+                        new[]
+                        {
+                            "*"
+                        }),
+                    type);
         }
 
         /// <summary>
@@ -151,9 +233,16 @@ namespace Code.Services.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetActualResponseType(
+            this HttpConfiguration config,
+            Type type,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(
+                    new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -163,7 +252,7 @@ namespace Code.Services.Areas.HelpPage
         /// <returns>The help page sample generator.</returns>
         public static HelpPageSampleGenerator GetHelpPageSampleGenerator(this HttpConfiguration config)
         {
-            return (HelpPageSampleGenerator)config.Properties.GetOrAdd(
+            return (HelpPageSampleGenerator) config.Properties.GetOrAdd(
                 typeof(HelpPageSampleGenerator),
                 k => new HelpPageSampleGenerator());
         }
@@ -173,7 +262,8 @@ namespace Code.Services.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="sampleGenerator">The help page sample generator.</param>
-        public static void SetHelpPageSampleGenerator(this HttpConfiguration config, HelpPageSampleGenerator sampleGenerator)
+        public static void SetHelpPageSampleGenerator(
+            this HttpConfiguration config, HelpPageSampleGenerator sampleGenerator)
         {
             config.Properties.AddOrUpdate(
                 typeof(HelpPageSampleGenerator),
@@ -192,26 +282,30 @@ namespace Code.Services.Areas.HelpPage
         public static HelpPageApiModel GetHelpPageApiModel(this HttpConfiguration config, string apiDescriptionId)
         {
             object model;
-            string modelId = ApiModelPrefix + apiDescriptionId;
+            var modelId = ApiModelPrefix + apiDescriptionId;
             if (!config.Properties.TryGetValue(modelId, out model))
             {
-                Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
+                var apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
+                var apiDescription =
+                    apiDescriptions.FirstOrDefault(
+                        api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
-                    HelpPageSampleGenerator sampleGenerator = config.GetHelpPageSampleGenerator();
+                    var sampleGenerator = config.GetHelpPageSampleGenerator();
                     model = GenerateApiModel(apiDescription, sampleGenerator);
                     config.Properties.TryAdd(modelId, model);
                 }
             }
 
-            return (HelpPageApiModel)model;
+            return (HelpPageApiModel) model;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is recorded as ErrorMessages.")]
-        private static HelpPageApiModel GenerateApiModel(ApiDescription apiDescription, HelpPageSampleGenerator sampleGenerator)
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+            Justification = "The exception is recorded as ErrorMessages.")]
+        private static HelpPageApiModel GenerateApiModel(
+            ApiDescription apiDescription, HelpPageSampleGenerator sampleGenerator)
         {
-            HelpPageApiModel apiModel = new HelpPageApiModel();
+            var apiModel = new HelpPageApiModel();
             apiModel.ApiDescription = apiDescription;
 
             try
@@ -230,7 +324,11 @@ namespace Code.Services.Areas.HelpPage
             }
             catch (Exception e)
             {
-                apiModel.ErrorMessages.Add(String.Format(CultureInfo.CurrentCulture, "An exception has occurred while generating the sample. Exception Message: {0}", e.Message));
+                apiModel.ErrorMessages.Add(
+                    String.Format(
+                        CultureInfo.CurrentCulture,
+                        "An exception has occurred while generating the sample. Exception Message: {0}",
+                        e.Message));
             }
 
             return apiModel;
@@ -238,11 +336,9 @@ namespace Code.Services.Areas.HelpPage
 
         private static void LogInvalidSampleAsError(HelpPageApiModel apiModel, object sample)
         {
-            InvalidSample invalidSample = sample as InvalidSample;
+            var invalidSample = sample as InvalidSample;
             if (invalidSample != null)
-            {
                 apiModel.ErrorMessages.Add(invalidSample.ErrorMessage);
-            }
         }
     }
 }

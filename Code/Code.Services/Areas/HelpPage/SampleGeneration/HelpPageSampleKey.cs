@@ -18,13 +18,9 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         public HelpPageSampleKey(MediaTypeHeaderValue mediaType, Type type)
         {
             if (mediaType == null)
-            {
                 throw new ArgumentNullException("mediaType");
-            }
             if (type == null)
-            {
                 throw new ArgumentNullException("type");
-            }
             ControllerName = String.Empty;
             ActionName = String.Empty;
             ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -39,24 +35,21 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public HelpPageSampleKey(SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
+        public HelpPageSampleKey(
+            SampleDirection sampleDirection,
+            string controllerName,
+            string actionName,
+            IEnumerable<string> parameterNames)
         {
             if (!Enum.IsDefined(typeof(SampleDirection), sampleDirection))
-            {
-                throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
-            }
+                throw new InvalidEnumArgumentException(
+                    "sampleDirection", (int) sampleDirection, typeof(SampleDirection));
             if (controllerName == null)
-            {
                 throw new ArgumentNullException("controllerName");
-            }
             if (actionName == null)
-            {
                 throw new ArgumentNullException("actionName");
-            }
             if (parameterNames == null)
-            {
                 throw new ArgumentNullException("parameterNames");
-            }
             ControllerName = controllerName;
             ActionName = actionName;
             ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
@@ -71,28 +64,24 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public HelpPageSampleKey(MediaTypeHeaderValue mediaType, SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
+        public HelpPageSampleKey(
+            MediaTypeHeaderValue mediaType,
+            SampleDirection sampleDirection,
+            string controllerName,
+            string actionName,
+            IEnumerable<string> parameterNames)
         {
             if (mediaType == null)
-            {
                 throw new ArgumentNullException("mediaType");
-            }
             if (!Enum.IsDefined(typeof(SampleDirection), sampleDirection))
-            {
-                throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
-            }
+                throw new InvalidEnumArgumentException(
+                    "sampleDirection", (int) sampleDirection, typeof(SampleDirection));
             if (controllerName == null)
-            {
                 throw new ArgumentNullException("controllerName");
-            }
             if (actionName == null)
-            {
                 throw new ArgumentNullException("actionName");
-            }
             if (parameterNames == null)
-            {
                 throw new ArgumentNullException("parameterNames");
-            }
             ControllerName = controllerName;
             ActionName = actionName;
             MediaType = mediaType;
@@ -138,11 +127,9 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
 
         public override bool Equals(object obj)
         {
-            HelpPageSampleKey otherKey = obj as HelpPageSampleKey;
+            var otherKey = obj as HelpPageSampleKey;
             if (otherKey == null)
-            {
                 return false;
-            }
 
             return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
                 String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
@@ -154,23 +141,15 @@ namespace Code.Services.Areas.HelpPage.SampleGeneration
 
         public override int GetHashCode()
         {
-            int hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();
+            var hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();
             if (MediaType != null)
-            {
                 hashCode ^= MediaType.GetHashCode();
-            }
             if (SampleDirection != null)
-            {
                 hashCode ^= SampleDirection.GetHashCode();
-            }
             if (ParameterType != null)
-            {
                 hashCode ^= ParameterType.GetHashCode();
-            }
-            foreach (string parameterName in ParameterNames)
-            {
+            foreach (var parameterName in ParameterNames)
                 hashCode ^= parameterName.ToUpperInvariant().GetHashCode();
-            }
 
             return hashCode;
         }
