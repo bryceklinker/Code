@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FMEditorLive">
+      <HintPath>..\lib\FMEditorLive.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\FootballManagerContext.cs" />
+    <Compile Include="Entities\FootballManagerPlayer.cs" />
+    <Compile Include="Entities\FootballManagerPlayerProxy.cs" />
+    <Compile Include="Games\FootballManagerGame.cs" />
+    <Compile Include="Games\FootballManagerGameImp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Code.Domain\Code.Domain.csproj">
+      <Project>{819766aa-6d40-41b2-b5df-7e0926830b1f}</Project>
+      <Name>Code.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

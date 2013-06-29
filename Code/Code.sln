@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code.Services.Test", "Code.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code.Domain.Features", "Code.Domain.Features\Code.Domain.Features.csproj", "{D9377600-B955-4B41-8437-BF41642B4634}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{47D76A43-1FE7-4AE3-B0CE-092337B5121A}"
+	ProjectSection(SolutionItems) = preProject
+		lib\FMEditorLive.exe = lib\FMEditorLive.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
