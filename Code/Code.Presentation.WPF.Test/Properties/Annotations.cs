@@ -15,9 +15,8 @@
  */
 
 using System;
-using System.ComponentModel;
 
-namespace Code.Presentation.WPF.Test.Annotations
+namespace Code.Presentation.WPF.Test.Properties
 {
   /// <summary>
   /// Indicates that marked element should be localized or not.

@@ -21,12 +21,12 @@ namespace Code.Presentation.WPF.Test.ViewModels
         }
 
         [Test]
-        public void SetPlayersRaisesPlayersPropertyChanged()
+        public void SetPlayersRaisesItemsPropertyChanged()
         {
             var isPropertyChanged = false;
             _viewModel.PropertyChanged += (sender, e) =>
             {
-                if (ExpressionHelper.GetPropertyName<SearchPlayersViewModel>(p => p.Players) == e.PropertyName)
+                if (ExpressionHelper.GetPropertyName<SearchPlayersViewModel>(p => p.Items) == e.PropertyName)
                     isPropertyChanged = true;
             };
 
@@ -36,7 +36,7 @@ namespace Code.Presentation.WPF.Test.ViewModels
         }
 
         [Test]
-        public void SetPlayersSetsPlayersProperty()
+        public void SetPlayersSetsItemsProperty()
         {
             var players = new List<SearchPlayerModel>();
             var response = new SearchPlayersResponse
@@ -46,7 +46,13 @@ namespace Code.Presentation.WPF.Test.ViewModels
 
             _viewModel.SetPlayers(response);
 
-            Assert.AreEqual(players, _viewModel.Players);
+            Assert.AreEqual(players, _viewModel.Items);
+        }
+
+        [Test]
+        public void HeaderIsPlayers()
+        {
+            Assert.AreEqual("Players", _viewModel.Header);
         }
     }
 }

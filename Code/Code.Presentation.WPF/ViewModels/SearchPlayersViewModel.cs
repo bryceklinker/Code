@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
@@ -9,27 +10,23 @@ using Code.Domain.SearchPlayers.Models;
 
 namespace Code.Presentation.WPF.ViewModels
 {
-    public class SearchPlayersViewModel : SearchPlayersConsumerBoundary, INotifyPropertyChanged
+    public class SearchPlayersViewModel : ViewModelBase, SearchPlayersConsumerBoundary, SelectionViewModel
     {
-        public IEnumerable<SearchPlayerModel> Players { get; private set; }
+        private const string _header = "Players";
+        public IEnumerable Items { get; private set; }
+
+        public string Header
+        {
+            get
+            {
+                return _header;
+            }
+        }
 
         public void SetPlayers(SearchPlayersResponse playersResponse)
         {
-            Players = playersResponse.Players;
-            RaisePropertyChanged(() => Players);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePopertyChanged(string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
-        {
-            RaisePopertyChanged(propertyExpression.GetPropertyName());
+            Items = playersResponse.Players;
+            RaisePropertyChanged(() => Items);
         }
     }
 }
