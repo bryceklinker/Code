@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Code.Presentation.WPF.ViewModels;
 
 namespace Code.Presentation.WPF
 {
@@ -20,9 +21,15 @@ namespace Code.Presentation.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(MainViewModel viewModel)
+            : this()
+        {
+            DataContext = viewModel;
         }
     }
 }

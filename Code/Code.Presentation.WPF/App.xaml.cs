@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Ninject;
 
 namespace Code.Presentation.WPF
 {
@@ -13,5 +14,6 @@ namespace Code.Presentation.WPF
     /// </summary>
     public partial class App : Application
     {
+       
     }
 }
