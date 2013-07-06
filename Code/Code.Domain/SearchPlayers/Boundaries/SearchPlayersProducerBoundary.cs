@@ -4,6 +4,6 @@ namespace Code.Domain.SearchPlayers.Boundaries
 {
     public interface SearchPlayersProducerBoundary
     {
-        void SearchPlayers(SearchPlayersRequest request);
+        void SearchPlayers(SearchPlayersRequest request, SearchPlayersConsumerBoundary consumerBoundary);
     }
 }

@@ -26,7 +26,7 @@ namespace Code.Domain.Features.SearchPlayers
             _consumerBoundary = new FakeSearchPlayersConsumerBoundary();
 
             _playerGateway = new PlayerGatewayImp(_context);
-            _interactor = new SearchPlayersInteractor(_playerGateway, _consumerBoundary);
+            _interactor = new SearchPlayersInteractor(_playerGateway);
 
             _request = new SearchPlayersRequest
             {
@@ -106,7 +106,7 @@ namespace Code.Domain.Features.SearchPlayers
         [When(@"I search")]
         public void WhenISearch()
         {
-            _interactor.SearchPlayers(_request);
+            _interactor.SearchPlayers(_request, _consumerBoundary);
         }
 
         [When(@"I enter potential (.*)")]

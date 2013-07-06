@@ -13,6 +13,7 @@ namespace Code.Presentation.WPF.ViewModels
     public class SearchPlayersViewModel : ViewModelBase, SearchPlayersConsumerBoundary, SelectionViewModel
     {
         private const string _header = "Players";
+
         public IEnumerable Items { get; private set; }
 
         public string Header

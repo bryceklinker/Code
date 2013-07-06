@@ -10,22 +10,20 @@ namespace Code.Domain.SearchPlayers
     public class SearchPlayersInteractor : SearchPlayersProducerBoundary
     {
         private readonly PlayerGateway _gateway;
-        private readonly SearchPlayersConsumerBoundary _consumerBoundary;
 
-        public SearchPlayersInteractor(PlayerGateway gateway, SearchPlayersConsumerBoundary consumerBoundary)
+        public SearchPlayersInteractor(PlayerGateway gateway)
         {
             _gateway = gateway;
-            _consumerBoundary = consumerBoundary;
         }
 
-        public void SearchPlayers(SearchPlayersRequest request)
+        public void SearchPlayers(SearchPlayersRequest request, SearchPlayersConsumerBoundary consumerBoundary)
         {
             var players = _gateway.GetPlayers(request);
             var response = new SearchPlayersResponse
             {
                 Players = ConvertPlayers(players)
             };
-            _consumerBoundary.SetPlayers(response);
+            consumerBoundary.SetPlayers(response);
         }
 
         private IEnumerable<SearchPlayerModel> ConvertPlayers(IEnumerable<Player> players)
