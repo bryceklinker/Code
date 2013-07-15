@@ -12,7 +12,7 @@ namespace Code.Presentation.WPF.ViewModels
 {
     public class SearchPlayersViewModel : ViewModelBase, SearchPlayersConsumerBoundary, SelectionViewModel
     {
-        private const string _header = "Players";
+        private const string HeaderText = "Players";
 
         public IEnumerable Items { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Code.Presentation.WPF.ViewModels
         {
             get
             {
-                return _header;
+                return HeaderText;
             }
         }
 

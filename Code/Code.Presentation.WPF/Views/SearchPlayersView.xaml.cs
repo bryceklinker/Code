@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Code.Presentation.WPF.ViewModels;
-using Ninject;
 
-namespace Code.Presentation.WPF
+namespace Code.Presentation.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SearchPlayersView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SearchPlayersView : UserControl
     {
-        private MainWindow()
+        public SearchPlayersView()
         {
             InitializeComponent();
-        }
-
-        [Inject]
-        public MainWindow(MainViewModel viewModel)
-            : this()
-        {
-            DataContext = viewModel;
         }
     }
 }
